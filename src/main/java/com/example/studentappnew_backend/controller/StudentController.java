@@ -7,7 +7,12 @@ import org.springframework.web.bind.annotation.RestController;
 public class StudentController {
 
     @GetMapping("/")
-    public String Homepage(){
-        return " Welcome to my website" ;
+    public String Homepage() {
+        return " Welcome to my website";
+    }
+
+        @GetMapping("/")
+        public String Contactpage(){
+            return " Welcome to contact page" ;
     }
 }
