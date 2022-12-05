@@ -11,8 +11,13 @@ public class StudentController {
         return " Welcome to my website";
     }
 
-        @GetMapping("contact")
-        public String Contactpage(){
-            return " Welcome to contact page" ;
+    @GetMapping("contact")
+    public String Contactpage() {
+        return " Welcome to contact page";
+    }
+
+    @GetMapping("/gallery")
+    public String Gallerypage() {
+        return " Welcome to my website";
     }
 }
