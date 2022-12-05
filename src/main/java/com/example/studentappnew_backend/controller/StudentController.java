@@ -21,7 +21,7 @@ public class StudentController {
         return " Welcome to gallery page";
     }
     @GetMapping("/home")
-    public String Homepage() {
+    public String Home() {
         return " Welcome to home page";
     }
 }
