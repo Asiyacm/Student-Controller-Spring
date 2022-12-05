@@ -18,6 +18,6 @@ public class StudentController {
 
     @GetMapping("/gallery")
     public String Gallerypage() {
-        return " Welcome to my website";
+        return " Welcome to my gallery";
     }
 }
