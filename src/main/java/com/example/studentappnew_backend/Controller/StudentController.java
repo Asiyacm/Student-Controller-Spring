@@ -5,6 +5,7 @@ import com.example.studentappnew_backend.dao.StudentsDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
 
 @RestController
@@ -19,15 +20,25 @@ private StudentsDao dao;
 
     @CrossOrigin(origins = "*")
     @PostMapping(path="/add",consumes = "application/json",produces ="application/json" )
-    public String Addpage(@RequestBody Students s) {
+     public HashMap<String,String> Addpage(@RequestBody Students s) {
         System.out.println(s.getName().toString());
         dao.save(s);
-        return " Welcome to  Add";
+        HashMap<String,String> map= new HashMap<>();
+        map.put("status","success");
+        return map;
     }
 
     @CrossOrigin(origins = "*")
     @GetMapping("/view")
     public List<Students> Viewpage() {
         return (List<Students>) dao.findAll();
+    }
+
+    @CrossOrigin(origins = "*")
+    @PostMapping(path="/search",consumes = "application/json",produces ="application/json" )
+    public List<Students> Searchpage(@RequestBody Students s) {
+        String name = String.valueOf(s.getName());
+        System.out.println(name);
+        return (List<Students>) dao.SearchStudents(s.getName());
     }
 }
