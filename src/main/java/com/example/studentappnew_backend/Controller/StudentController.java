@@ -15,16 +15,17 @@ public class StudentController {
     public String Homepage() {
         return " Welcome to my website";
     }
-@Autowired
-private StudentsDao dao;
+
+    @Autowired
+    private StudentsDao dao;
 
     @CrossOrigin(origins = "*")
-    @PostMapping(path="/add",consumes = "application/json",produces ="application/json" )
-     public HashMap<String,String> Addpage(@RequestBody Students s) {
+    @PostMapping(path = "/add", consumes = "application/json", produces = "application/json")
+    public HashMap<String, String> Addpage(@RequestBody Students s) {
         System.out.println(s.getName().toString());
         dao.save(s);
-        HashMap<String,String> map= new HashMap<>();
-        map.put("status","success");
+        HashMap<String, String> map = new HashMap<>();
+        map.put("status", "success");
         return map;
     }
 
@@ -35,10 +36,21 @@ private StudentsDao dao;
     }
 
     @CrossOrigin(origins = "*")
-    @PostMapping(path="/search",consumes = "application/json",produces ="application/json" )
+    @PostMapping(path = "/search", consumes = "application/json", produces = "application/json")
     public List<Students> Searchpage(@RequestBody Students s) {
         String name = String.valueOf(s.getName());
         System.out.println(name);
         return (List<Students>) dao.SearchStudents(s.getName());
+    }
+
+    @CrossOrigin(origins = "*")
+    @PostMapping(path = "/delete", consumes = "application/json", produces = "application/json")
+    public HashMap<String, String>  Deletepage(@RequestBody Students s) {
+        String name = String.valueOf(s.getName());
+        System.out.println(name);
+        dao.delete(s);
+        HashMap<String, String> map = new HashMap<>();
+        map.put("status", "success");
+        return map;
     }
 }
